@@ -1,1 +1,55 @@
-Okay, this is post create component.
+{{ category }}
+
+<i class="fa fa-user"></i>
+
+
+<div class="container m-0 p-0">
+
+  <div class="row mt-2 mb-1">
+    <div class="col-4 fs-sm">Title</div>
+    <div class="col-8"><input class="px-1 w-100" type="text" name="post_title" [(ngModel)]="post_title"></div>
+  </div>
+
+  <div class="row mt-2 mb-1">
+    <div class="col-4 fs-sm">Name</div>
+    <div class="col-8"><input class="w-100" type="text" name="post_author_name" [(ngModel)]="post_author_name"></div>
+  </div>
+
+  <div class="row my-1">
+    <div class="col-4 fs-sm">Email</div>
+    <div class="col-8"><input class="w-100" type="email" name="post_author_email" [(ngModel)]="post_author_email"></div>
+  </div>
+
+  <div class="row my-1">
+    <div class="col-4 fs-sm">Mobile No.</div>
+    <div class="col-8"><input class="w-100" type="text" name="post_author_phone_number" [(ngModel)]="post_author_phone_number"></div>
+  </div>
+
+  <div class="row mt-1 mb-2">
+    <div class="col-4 fs-sm">Password</div>
+    <div class="col-8"><input class="w-100" type="password" name="post_password" [(ngModel)]="post_password"></div>
+  </div>
+
+</div>
+
+
+<div class="mt-2">
+  <textarea class="p-1 w-100 h-10em" name="post_content" [(ngModel)]="post_content" placeholder="Please input content"></textarea>
+</div>
+
+
+
+<div class="d-flex justify-content-between">
+
+  <div>
+    <span class="stacked-camera-icon-with-file-box fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+        <i class="fa fa-camera fa-stack-1x fa-inverse" aria-hidden="true"></i>
+        <input type="file" (change)="fileUploadWidget.onChangeFile($event)">
+    </span>
+  </div>
+  <div>
+    <button type="submit" class="post-create-button btn btn-secondary" (click)="onSubmit()">Submit</button>
+  </div>
+
+</div>

@@ -35,7 +35,7 @@ export class XapiService {
     }
 
 
-    
+
     checkResult(res, data) {
         // console.log("res: ", res);
         if (!res) {
@@ -57,7 +57,36 @@ export class XapiService {
     }
 
     version() {
-        return this.post({route: 'wordpress.version'});
+        return this.post({ route: 'wordpress.version' });
+    }
+
+
+
+    /**
+     * .set() automatically JSON.stringify()
+     * .get() automatically JSON.parse()
+     *
+     * @return .get() returns null if there is error or the value is falsy.
+     *
+     */
+    get(key) {
+        let value = localStorage.getItem(key);
+        if (value) {
+            try {
+                return JSON.parse(value);
+            }
+            catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    set(key, data) {
+        // console.log("storage::set()", data);
+        return localStorage.setItem(key, JSON.stringify(data));
     }
 
 }
+
+

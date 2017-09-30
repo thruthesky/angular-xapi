@@ -6,6 +6,12 @@ import { XapiService } from './services/xapi';
 export { XapiService } from './services/xapi';
 import { ForumService } from './services/forum.service';
 export { ForumService } from './services/forum.service';
+import { UserService } from './services/user.service';
+export { UserService } from './services/user.service';
+import { FileService } from './services/file.service';
+export { FileService } from './services/file.service';
+
+export { SERVER_ERROR_CODE } from './services/defines';
 
 @NgModule({
     imports: [
@@ -13,6 +19,6 @@ export { ForumService } from './services/forum.service';
     ],
     exports: [],
     declarations: [],
-    providers: [ XapiService, ForumService ],
+    providers: [ XapiService, ForumService, UserService, FileService ],
 })
 export class AngularXapiServiceModule { }

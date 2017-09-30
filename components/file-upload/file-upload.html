@@ -1,0 +1,31 @@
+<section class="file-upload-component">
+  <div *ngIf="title" class="title">{{ titleText }}</div>
+  <label *ngIf="fileSelectionButton" class="file-upload-button custom-file">
+        
+                <input type="file" id="file" class="custom-file-input" (change)="onChangeFile($event)">
+                <span class="custom-file-control"></span>
+            </label>
+
+  <div *ngIf=" progressPercentage > 0 " class="progress mt-1">
+    <div class="progress-bar" role="progressbar" [style.width]=" progressPercentage + '%' " aria-valuenow="25" aria-valuemin="0"
+      aria-valuemax="100">{{ progressPercentage }} %
+    </div>
+  </div>
+
+  <div *ngIf="showUploadedFiles && files && files.length " class="files uploaded-files">
+    <div class="file" *ngFor=" let file of files " [attr.type]="app.file.getFileType(file)">
+      <div class='content' (click)="onClickDeleteButton(file)">
+        <span class="trash-button fa-stack fa-lg pointer">
+                        <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                        <i class="fa fa-trash fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                    </span>
+        <div [class]="app.file.getFileType(file)">
+          <img src="{{ file.url_thumbnail ? file.url_thumbnail : file.url }}" *ngIf="app.file.getFileType(file) == 'image'">
+          <a href="{{ file.url }}" target="_blank" *ngIf="app.file.getFileType(file) == 'attachment'">
+                                {{file.name }}
+                            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
