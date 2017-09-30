@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from './../../angular-xapi-service.module';
+
 
 @Component({
     selector: 'post-create-component',
@@ -7,18 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class PostCreateComponent implements OnInit {
-    category = 'No Category';
+    @Input() category = 'No Category';
+    @Input() caption = '';
+
     post_title;
     post_author_name;
     post_author_email;
     post_author_phone_number;
     post_password;
     post_content;
-    constructor() { }
+    constructor(
+        public user: UserService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        
+    }
 
     onSubmit() {
 
+        console.log("onSubmit()");
+        
     }
 }

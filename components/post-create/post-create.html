@@ -1,7 +1,4 @@
-{{ category }}
-
-<i class="fa fa-user"></i>
-
+{{ caption ? caption : category }}
 
 <div class="container m-0 p-0">
 
@@ -10,25 +7,28 @@
     <div class="col-8"><input class="px-1 w-100" type="text" name="post_title" [(ngModel)]="post_title"></div>
   </div>
 
-  <div class="row mt-2 mb-1">
-    <div class="col-4 fs-sm">Name</div>
-    <div class="col-8"><input class="w-100" type="text" name="post_author_name" [(ngModel)]="post_author_name"></div>
-  </div>
+  <ng-container *ngIf=" user.isLogout ">
+    <div class="row mt-2 mb-1">
+      <div class="col-4 fs-sm">Name</div>
+      <div class="col-8"><input class="w-100" type="text" name="post_author_name" [(ngModel)]="post_author_name"></div>
+    </div>
 
-  <div class="row my-1">
-    <div class="col-4 fs-sm">Email</div>
-    <div class="col-8"><input class="w-100" type="email" name="post_author_email" [(ngModel)]="post_author_email"></div>
-  </div>
+    <div class="row my-1">
+      <div class="col-4 fs-sm">Email</div>
+      <div class="col-8"><input class="w-100" type="email" name="post_author_email" [(ngModel)]="post_author_email"></div>
+    </div>
 
-  <div class="row my-1">
-    <div class="col-4 fs-sm">Mobile No.</div>
-    <div class="col-8"><input class="w-100" type="text" name="post_author_phone_number" [(ngModel)]="post_author_phone_number"></div>
-  </div>
+    <div class="row my-1">
+      <div class="col-4 fs-sm">Mobile No.</div>
+      <div class="col-8"><input class="w-100" type="text" name="post_author_phone_number" [(ngModel)]="post_author_phone_number"></div>
+    </div>
 
-  <div class="row mt-1 mb-2">
-    <div class="col-4 fs-sm">Password</div>
-    <div class="col-8"><input class="w-100" type="password" name="post_password" [(ngModel)]="post_password"></div>
-  </div>
+    <div class="row mt-1 mb-2">
+      <div class="col-4 fs-sm">Password</div>
+      <div class="col-8"><input class="w-100" type="password" name="post_password" [(ngModel)]="post_password"></div>
+    </div>
+  </ng-container>
+
 
 </div>
 
