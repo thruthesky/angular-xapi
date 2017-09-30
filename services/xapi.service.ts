@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
 
 export interface ERROR_RESPONSE {
     code: number;
@@ -13,19 +14,23 @@ export class XapiService {
 
     private serverUrl = '';
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private zone: NgZone
     ) { }
 
     setServerUrl(url: string): void {
         this.serverUrl = url + '/wp-json/xapi/v2/do';
         console.log("serverUrl: ", this.serverUrl);
     }
+
     getServerUrl(): string {
         return this.serverUrl;
     }
 
     post(data): Observable<any> {
         console.log('url: ', this.serverUrl);
+        // data.session_id = this.user.sessionId;
+        // data.route = 'post.create';
         return this.http.post(this.serverUrl, data)
             .map(e => this.checkResult(e, data))
         // .map(e => {
@@ -57,6 +62,7 @@ export class XapiService {
     }
 
     version() {
+        // console.log("version: ");
         return this.post({ route: 'wordpress.version' });
     }
 
@@ -87,6 +93,33 @@ export class XapiService {
         return localStorage.setItem(key, JSON.stringify(data));
     }
 
+
+
+
+    /**
+     * Returns true if the app is running as Cordova mobile app.
+     */
+    get isCordova(): boolean {
+        if (window['cordova']) return true;
+        if (document.URL.indexOf('http://') === -1
+            && document.URL.indexOf('https://') === -1) return true;
+        return false;
+    }
+
+    get isWeb(): boolean {
+        if (document.URL.indexOf('http://') !== -1
+            || document.URL.indexOf('https://') !== -1) return true;
+        else return false;
+    }
+
+
+    
+    render(timer = 10) {
+        setTimeout(() => this.zone.run(() => { }), timer);
+    }
+
+
 }
+
 
 

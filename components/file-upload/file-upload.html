@@ -1,7 +1,6 @@
 <section class="file-upload-component">
   <div *ngIf="title" class="title">{{ titleText }}</div>
   <label *ngIf="fileSelectionButton" class="file-upload-button custom-file">
-        
                 <input type="file" id="file" class="custom-file-input" (change)="onChangeFile($event)">
                 <span class="custom-file-control"></span>
             </label>
@@ -12,17 +11,18 @@
     </div>
   </div>
 
+
   <div *ngIf="showUploadedFiles && files && files.length " class="files uploaded-files">
-    <div class="file" *ngFor=" let file of files " [attr.type]="app.file.getFileType(file)">
-      <div class='content' (click)="onClickDeleteButton(file)">
+    <div class="file" *ngFor=" let data of files " [attr.type]="file.getFileType(data)">
+      <div class='content' (click)="onClickDeleteButton(data)">
         <span class="trash-button fa-stack fa-lg pointer">
                         <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                         <i class="fa fa-trash fa-stack-1x fa-inverse" aria-hidden="true"></i>
                     </span>
-        <div [class]="app.file.getFileType(file)">
-          <img src="{{ file.url_thumbnail ? file.url_thumbnail : file.url }}" *ngIf="app.file.getFileType(file) == 'image'">
-          <a href="{{ file.url }}" target="_blank" *ngIf="app.file.getFileType(file) == 'attachment'">
-                                {{file.name }}
+        <div [class]="file.getFileType(data)">
+          <img src="{{ data.url_thumbnail ? data.url_thumbnail : data.url }}" *ngIf="file.getFileType(data) == 'image'">
+          <a href="{{ data.url }}" target="_blank" *ngIf="file.getFileType(data) == 'attachment'">
+                                {{data.name }}
                             </a>
         </div>
       </div>

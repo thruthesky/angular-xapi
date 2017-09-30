@@ -8,6 +8,22 @@ export interface REQUEST {
     session_id?: string;
 };
 
+
+interface ID {
+    ID: number;
+};
+interface ID_O {
+    ID?: number;
+};
+interface CATEGORY {
+    category: string;
+};
+interface CATEGORY_O {
+    category?: string;
+};
+
+
+
 export interface FILE {
     id: number;
     type: string;          // can be 'false' if file type is not recognized.
@@ -16,7 +32,18 @@ export interface FILE {
     url_thumbnail_wide?: string; // only available for the first image. @see google doc
     name: string;
 };
+
+
 export type FILES = Array<FILE>;
+
+export interface FILE_DELETE extends REQUEST {
+    id?: number;
+    guid?: string;
+    post_password?: string;
+};
+
+
+
 
 export interface USER_LOGIN {
     route?: string;
@@ -71,3 +98,30 @@ export interface USER_CHANGE_PASSWORD extends REQUEST {
 
 
 
+
+export interface POST_CREATE_COMMON {
+    post_title: string;
+    post_content?: string;
+    post_content_pre?: string;              /// pre process 'post_content' by forum.service.ts that is available only on client end.
+    post_password?: string;
+    post_author_name?: string;             /// This is anonymous user name when a anonymous post without login.
+    post_author_email?: string;            /// post_author_name, post_author_email, post_author_phone_number will only be available on create.
+    post_author_phone_number?: string;     /// 'author' field will be available for reading.
+    fid?: Array<number>;
+    int_1?: number;
+    int_2?: number;
+    int_3?: number;
+    char_1?: string;
+    char_2?: string;
+    char_3?: string;
+    varchar_1?: string;
+    varchar_2?: string;
+    varchar_3?: string;
+    varchar_4?: string;
+    varchar_5?: string;
+    site_preview_id?: number; /// available only
+};
+
+
+export interface POST_CREATE extends REQUEST, ID_O, CATEGORY, POST_CREATE_COMMON {};
+export type POST_CREATE_RESPONSE = number;

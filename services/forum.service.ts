@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { XapiService } from './xapi';
+import { XapiService } from './xapi.service';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -15,7 +15,7 @@ export class ForumService {
 
     postCreate(data): Observable<any> {
         data.route = 'post.create';
-        // console.log(data);
+        console.log(data);
         return this.x.post(data);
     }
 

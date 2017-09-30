@@ -1,0 +1,68 @@
+$global-padding: 8px;
+$file-box-space: 2px;
+$file-content-space: 5px;
+$file-box-height: 88px;
+
+/** for file upload template */
+.file-upload-component {
+    overflow: auto;
+    .title {
+        margin: $file-content-space;
+        font-size: 1em;
+    }
+    .file-upload-button  {
+        margin: $file-content-space;
+    }
+    .files {
+        margin-top: $file-box-space;
+        margin-left: $file-box-space;
+        .file {
+            position: relative;
+            padding: $file-box-space;
+            width: 33.333%;
+            float: left;
+            .content {
+                margin: $file-box-space;
+                border: 1px solid grey;
+                height: $file-box-height;
+                background-color: white;
+                overflow: hidden;
+                .trash-button {
+                    display: block;
+                    position: absolute;
+                    z-index: 100;
+                    right: .2em;
+                    top: .2em;
+                }
+                .image {
+                    img {
+                        max-width: 100%;
+                    }
+                }
+                .attachment {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: $file-box-height - 2px; // border
+                    a {
+                        background-color: yellow;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.file .attachment a {
+    word-break: break-all;
+}
+
+
+
+
+
+
+.file-upload .progress {
+    margin: 0 $global-padding $global-padding;
+}

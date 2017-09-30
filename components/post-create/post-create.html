@@ -29,7 +29,6 @@
     </div>
   </ng-container>
 
-
 </div>
 
 
@@ -45,7 +44,7 @@
     <span class="stacked-camera-icon-with-file-box fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
         <i class="fa fa-camera fa-stack-1x fa-inverse" aria-hidden="true"></i>
-        <input type="file" (change)="fileUploadWidget.onChangeFile($event)">
+        <input type="file" (change)="fileUploadComponent.onChangeFile($event)">
     </span>
   </div>
   <div>
@@ -53,3 +52,8 @@
   </div>
 
 </div>
+
+
+<file-upload-component #fileUploadComponent [title]="false" [fileSelectionButton]="false" [files]="files" [post_password]="post_password"></file-upload-component>
+
+

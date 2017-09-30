@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { XapiService } from './services/xapi';
-export { XapiService } from './services/xapi';
+import { XapiService } from './services/xapi.service';
+export { XapiService } from './services/xapi.service';
 import { ForumService } from './services/forum.service';
 export { ForumService } from './services/forum.service';
 import { UserService } from './services/user.service';
@@ -19,6 +19,6 @@ export { SERVER_ERROR_CODE } from './services/defines';
     ],
     exports: [],
     declarations: [],
-    providers: [ XapiService, ForumService, UserService, FileService ],
+    providers: [XapiService, ForumService, UserService, FileService],
 })
 export class AngularXapiServiceModule { }

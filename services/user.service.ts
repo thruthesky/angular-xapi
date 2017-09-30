@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { XapiService } from './xapi';
+import { XapiService } from './xapi.service';
 import {
     KEY_LOGIN,
     REQUEST,
