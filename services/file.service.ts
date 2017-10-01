@@ -57,7 +57,7 @@ export class FileService {
                         if ( e.body && e.body['code'] === 0) {
                             return e.body['data'];
                         }
-                        else return {};
+                        else return e.body; // Return Wordpress Xapi Server error
                     }
                 }
                 else if ( e instanceof HttpHeaderResponse ) { // header event

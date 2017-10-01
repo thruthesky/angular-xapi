@@ -19,7 +19,7 @@ $file-box-height: 88px;
         .file {
             position: relative;
             padding: $file-box-space;
-            width: 33.333%;
+            max-width: 33.333%;
             float: left;
             .content {
                 margin: $file-box-space;

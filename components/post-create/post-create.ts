@@ -11,16 +11,22 @@ import { POST_CREATE, POST_CREATE_RESPONSE, FILES } from './../../services/defin
 })
 
 export class PostCreateComponent implements OnInit {
+
+    ///
+    @Input() showContentBox = true;
     @Input() category = 'No Category';
     @Input() caption = '';
     @Output() success = new EventEmitter<number>();
+
+    @Input() parent;
+
 
 
     /// files
     files: FILES = [];
 
 
-
+    
 
     ///
     post_title;
@@ -28,7 +34,7 @@ export class PostCreateComponent implements OnInit {
     post_author_email;
     post_author_phone_number;
     post_password;
-    post_content;
+    post_content = '';
     constructor(
         public user: UserService,
         public forum: ForumService
@@ -39,9 +45,18 @@ export class PostCreateComponent implements OnInit {
         
     }
 
+    onFileUpload( file ) {
+        if ( this.parent && this.parent.hookPostCreate ) {
+            this.parent.hookPostCreate({action: 'file-uploaded', file: file});
+        }
+    }
     onSubmit() {
 
         console.log("onSubmit()");
+
+        if ( this.parent && this.parent.hookPostCreate ) {
+            this.parent.hookPostCreate({action: 'submit'});
+        }
 
         let data: POST_CREATE = {
             category: this.category,
@@ -63,4 +78,6 @@ export class PostCreateComponent implements OnInit {
 
 
     }
+
+    
 }

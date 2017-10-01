@@ -32,7 +32,7 @@
 </div>
 
 
-<div class="mt-2">
+<div class="mt-2" *ngIf="showContentBox">
   <textarea class="p-1 w-100 h-10em" name="post_content" [(ngModel)]="post_content" placeholder="Please input content"></textarea>
 </div>
 
@@ -54,6 +54,11 @@
 </div>
 
 
-<file-upload-component #fileUploadComponent [title]="false" [fileSelectionButton]="false" [files]="files" [post_password]="post_password"></file-upload-component>
+<file-upload-component #fileUploadComponent [title]="false"
+  [fileSelectionButton]="false"
+  [files]="files"
+  [post_password]="post_password"
+  (success)="onFileUpload($event)"
+  ></file-upload-component>
 
 

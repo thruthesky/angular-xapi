@@ -38,9 +38,9 @@ export class FileUploadComponent implements OnInit {
         //
         // if (this.x.isCordova) return;
 
-        console.log("onChangeFile()");
+        // console.log("onChangeFile()");
         this.file.uploadForm(evt).subscribe(event => {
-            // console.log(event);
+            console.log(event);
             if (typeof event === 'number') {
                 // console.log(`File is ${event}% uploaded.`);
                 this.onProgress(event);
@@ -51,13 +51,18 @@ export class FileUploadComponent implements OnInit {
                 this.insertFile(event);
             }
             else if (event === null) {
-                console.log("what is it?");
+                // console.log("what is it?");
+            }
+            else if ( event['code'] ) {
+                // console.log('error: ', event);
+                this.onUploadFailure();
+                alert( event.message );
             }
         }, (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
-                console.log("Client-side error occured.");
+                // console.log("Client-side error occured.");
             } else {
-                console.log(err);
+                // console.log("ERROR?", err);
                 if (err.message === 'file_is_not_selected' || err.message === 'file_is_not_selected_or_file_does_not_exist') {
                     alert('File uploaded cancelled. No file was selected.');
                 }
