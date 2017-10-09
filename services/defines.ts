@@ -18,9 +18,9 @@ interface ID_O {
 interface CATEGORY {
     category: string;
 };
-interface CATEGORY_O {
-    category?: string;
-};
+// interface CATEGORY_O {
+//     category?: string;
+// };
 
 
 
@@ -75,8 +75,7 @@ export type USER_DATA_RESPONSE = USER_REGISTER;
 
 
 
-export interface USER_LOGIN_RESPONSE {
-    ID: number;
+export interface USER_LOGIN_RESPONSE extends ID {
     user_email: string;
     display_name: string;
     session_id: string;
